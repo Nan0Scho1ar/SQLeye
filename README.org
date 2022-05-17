@@ -1,0 +1,22 @@
+#+TITLE: SQLeye
+
+SQL Interactive mode wrapper which plays nice with org mode code blocks.
+
+** Installation Instructions
+*** Doom Emacs
+Add the following line to your ~packages.el~ then run ~doom sync~.
+#+begin_src emacs-lisp
+(package! sqleye :recipe (:host github :repo "nan0scho1ar/sqleye" :files ("*.el")))
+
+#+end_src
+ Add some bindings in your ~config.el~
+#+begin_src emacs-lisp
+(set-eval-handler! 'sql-mode #'sqleye-send-region)
+(map! :leader :desc "Open SQLeye Buffer" "o s" #'sqleye-toggle-buffer)
+(map! :map sql-interactive-mode-map :v "gr" #'sqleye-buffer-send-region)
+#+end_src
+
+* Setup
+1. Set up your initial connection with as usual with ~sql~ and save the connection.
+2. Start up the connection by running ~sqleye-toggle-buffer~.
+3. Run your code from either a ~.sql~ file or an org mode code block with lang set to ~sql~.
