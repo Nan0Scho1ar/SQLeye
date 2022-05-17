@@ -88,7 +88,7 @@ Required because evaluating leaves the text selected for some reason."
   (interactive)
   (if (sqleye-live-p)
       (if (get-buffer-window sqleye-buffer)
-          (delete-window)
+          (delete-window (get-buffer-window sqleye-buffer))
         (sqleye-pop-buffer))
     (sqleye-connect)))
 
