@@ -48,13 +48,13 @@
   (interactive "r")
   (sqleye-send-string (buffer-substring-no-properties start end)))
 
-(defun sqleye-buffer-send-region (start end)
+(defun sqleye-send-region-and-deselect (start end)
   "Send text from START to END to the SQL process using SQLeye.
 
 this is basically sqleye-send-region but for the interactive buffer.
 Required because evaluating leaves the text selected for some reason."
   (interactive "r")
-  (sqleye-send-string (buffer-substring-no-properties start end))
+  (sqleye-send-region start end)
   (transient-mark-mode -1))
 
 (defun sqleye-pop-buffer ()
